@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 import { FaUser } from "react-icons/fa";
+import {useSelector, useDispatch} from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import {  registerUser, reset } from "../features/auth/authSlice";
+import Spinner from "../components/Spinner";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -11,6 +16,11 @@ export default function Register() {
   });
 
   const { name, email, password, confirmPassword, imgUrl } = formData;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -38,10 +48,39 @@ export default function Register() {
     }));
   };
 
+  useEffect(() => {
+    if(isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      toast.success("Registration successful");
+      navigate("/");
+    }
+
+    dispatch(reset());
+      
+  }, [user, navigate, isError, isSuccess, message, dispatch]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords don't match");
+    } else {
+      const userData = {
+        name,
+        email,
+        password,
+        imgUrl,
+      }
+      dispatch(registerUser(userData));
+    }
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
