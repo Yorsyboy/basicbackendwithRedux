@@ -2,12 +2,11 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import ProductForm from "../components/ProductForm";
 import Spinner from "../components/Spinner";
-import { getProductByUser, reset } from "../features/products/productSlice";
+import { getProduct, reset } from "../features/products/productSlice";
 import Products from "../components/Products";
 
-export default function Dasboard() {
+export default function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -20,35 +19,24 @@ export default function Dasboard() {
       console.log(message);
     }
 
-    if (!user) {
-      toast("Login to access this page");
-      navigate("/login");
-    }
-
-    dispatch(getProductByUser());
+    dispatch(getProduct());
 
     return () => {
       dispatch(reset());
     };
-  }, [user, navigate, isError, message, dispatch]);
+  }, [ dispatch]);
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  // {
-  //   console.log(products);
-  //   console.log(user, {
-  //     test: user.user._id,
-
-  //   })
-  // }
+  {console.log(products)}
 
   return (
-    <>
-      <section className="heading">
+    <div>
+      <section>
         <h1>welcome {user && user.user.name}</h1>
-        <p>My Products</p>
+        <p>Products</p>
       </section>
       <section className="content">
         {products.length > 0 ? (
@@ -61,7 +49,6 @@ export default function Dasboard() {
           <h3>No Products</h3>
         )}
       </section>
-      <ProductForm />
-    </>
+    </div>
   );
 }

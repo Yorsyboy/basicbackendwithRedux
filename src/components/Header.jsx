@@ -17,15 +17,29 @@ export default function () {
   return (
     <header className="flex justify-between items-center mb-16 py-5 px-0 border-b">
       <div className="">
-        <Link to="/" className="">
-          Product{" "}
-        </Link>
+        {user ? (
+          <>
+            <div className="space-x-1">
+              <Link to="/" className="">
+                Home{" "}
+              </Link>
+              <Link to="/dashboard" className="">
+                Dashboard{" "}
+              </Link>
+            </div>
+          </>
+        ) : (
+          <Link to="/" className="">
+            Home{" "}
+          </Link>
+        )}
       </div>
       <ul className="flex items-center justify-between">
         {user ? (
           <li className="ml-5">
-            <button onClick={onLogout}  className="flex items-center space-x-1">
-              <FaSignOutAlt className="" />Logout
+            <button onClick={onLogout} className="flex items-center space-x-1">
+              <FaSignOutAlt className="" />
+              Logout
             </button>
           </li>
         ) : (
