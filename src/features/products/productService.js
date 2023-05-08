@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/";
+const API_URL = "https://basicbackend-aco6.onrender.com/";
 
 // Create a new product
 const createProduct = async (productData, token) => {

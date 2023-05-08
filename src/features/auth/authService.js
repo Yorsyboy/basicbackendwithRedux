@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-const API_URL = "http://localhost:5000/";
+const API_URL = "https://basicbackend-aco6.onrender.com/";
 
 // Register a new user
 const register = async (userData) => {
