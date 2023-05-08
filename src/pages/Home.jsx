@@ -41,7 +41,7 @@ export default function Home() {
       <section className="content">
         {products.length > 0 ? (
           <div>
-            {products.map((product) => (
+            {products?.map((product) => (
               <Products key={product._id} product={product} />
             ))}
           </div>

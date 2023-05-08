@@ -38,6 +38,19 @@ const getProductByUser = async (token) => {
     return response.data;
 }
 
+// Update product
+const updateProduct = async (id, productData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    }
+
+    const response = await axios.put(API_URL + `products/:id}`, productData, config);
+
+    return response.data;
+}
+
 //Delete product
 const deleteProduct = async (id, token) => {
     const config = {
@@ -59,6 +72,7 @@ const productService = {
     getProduct,
     getProductByUser,
     deleteProduct,
+    updateProduct
 }
 
 export default productService;
