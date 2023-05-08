@@ -5,7 +5,11 @@ import { toast } from "react-toastify";
 import CurrencyInput from "react-currency-input-field";
 import ProductForm from "../components/ProductForm";
 import Spinner from "../components/Spinner";
-import { getProductByUser, updateProduct, reset } from "../features/products/productSlice";
+import {
+  getProductByUser,
+  updateProduct,
+  reset,
+} from "../features/products/productSlice";
 import Products from "../components/Products";
 
 export default function UpdateProduct() {
@@ -83,7 +87,6 @@ export default function UpdateProduct() {
     setFormData({ ...formData, [e.target.name]: boolean ?? e.target.value });
   };
 
-
   return (
     <div>
       <section>
@@ -98,7 +101,10 @@ export default function UpdateProduct() {
 
       <section>
         {products?.map((product) => (
-          <form key={product._id} onSubmit={(e) => handleSubmit(e, product._id)}>
+          <form
+            key={product._id}
+            onSubmit={(e) => handleSubmit(e, product._id)}
+          >
             <div className="form-group">
               <label htmlFor="name">Product Name</label>
               <input
@@ -125,15 +131,16 @@ export default function UpdateProduct() {
             </div>
             <div className="form-group">
               <label htmlFor="price">Product Price</label>
-              <CurrencyInput
-                onChange={handleChange}
+              <input
+                type="number"
                 id="price"
                 name="price"
                 value={formData.price || product.price}
-                placeholder="Enter Product Price"
+                placeholder="Product Price"
+                aria-label="Product Price"
+                onChange={handleChange}
+                min={100}
                 required
-                prefix="₹"
-                decimalsLimit={2}
               />
             </div>
             <div className="form-group">
@@ -161,7 +168,6 @@ export default function UpdateProduct() {
             <div className="form-group">
               <label htmlFor="isAvailable">Product Availability</label>
               <select
-
                 onChange={handleChange}
                 id="isAvailable"
                 name="isAvailable"

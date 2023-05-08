@@ -90,26 +90,82 @@ h3 {
   color: #828282;
 }
 
-.goals {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+.product-card {
+	display: flex;
+	flex-direction: column;
+	row-gap: 16px;
+	width: 280px;
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 8px;
+	overflow-y: hidden;
 }
-
-.goal {
-  background-color: #f4f4f4;
-  margin: 10px 0;
-  padding: 20px 0 10px;
-  position: relative;
+.product-card__image {
+	display: block;
+	max-width: 100%;
+	animation: fadeIn 0.25s;
 }
-
-.goal .close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  cursor: pointer;
-  border: none;
-  background: none;
+.product-card__caption {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	background-color: #2b2b2d;
+	font-size: 14px;
+	color: #fff;
+	letter-spacing: 1px;
+	padding: 20px;
+	border-radius: inherit;
+	animation: fadeIn 0.5s;
+}
+.product-card__title {
+	font-size: 18px;
+	text-transform: uppercase;
+}
+.product-card__subtitle {
+	color: #d8d7e3;
+}
+.product-card__footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.product-card__price {
+	font-weight: 600;
+}
+.product-card__button {
+	display: grid;
+	place-items: center;
+	width: 30px;
+	height: 30px;
+	background-color: #03d7c9;
+	color: #fff;
+	outline: none;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: background-color 0.25s;
+}
+.product-card__button:hover,
+.product-card__button:focus {
+	background-color: red;
+}
+.product-card__icon {
+	font-size: 18px;
+	transition: transform 0.25s;
+}
+.product-card__button:hover .product-card__icon,
+.product-card__button:focus .product-card__icon {
+	transform: rotate(1turn);
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .form,
@@ -137,40 +193,6 @@ h3 {
   text-align: left;
   display: block;
   margin: 0 0 5px 3px;
-}
-
-.btn {
-  padding: 10px 20px;
-  border: 1px solid #000;
-  border-radius: 5px;
-  background: #000;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: center;
-  appearance: button;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn svg {
-  margin-right: 8px;
-}
-
-.btn-reverse {
-  background: #fff;
-  color: #000;
-}
-
-.btn-block {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.btn:hover {
-  transform: scale(0.98);
 }
 
 .loadingSpinnerContainer {

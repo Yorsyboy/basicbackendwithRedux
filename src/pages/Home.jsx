@@ -38,9 +38,9 @@ export default function Home() {
         <h1>welcome {user && user.user.name}</h1>
         <p>Products</p>
       </section>
-      <section className="content">
+      <section className="">
         {products.length > 0 ? (
-          <div>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
             {products?.map((product) => (
               <Products key={product._id} product={product} />
             ))}

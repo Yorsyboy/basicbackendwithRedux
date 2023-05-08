@@ -10,7 +10,7 @@ import UpdateProduct from "./pages/UpdateProduct";
 
 function App() {
   return (
-    <div className="w-full text-center max-w-[960px] mx-auto my-0 p-5 ">
+    <div className="w-full text-center max-w-[960px] mx-auto my-0 lg:max-w-7xl p-5 ">
       <BrowserRouter>
         <Header/>
         <Routes>

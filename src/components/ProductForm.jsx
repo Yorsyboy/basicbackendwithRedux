@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import CurrencyInput from "react-currency-input-field";
 import { createProduct } from "../features/products/productSlice";
 
 export default function ProductForm() {
@@ -62,7 +61,7 @@ export default function ProductForm() {
   };
 
   return (
-    <section>
+    <section className="mt-4">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Product Name</label>
@@ -90,13 +89,13 @@ export default function ProductForm() {
         </div>
         <div className="form-group">
           <label htmlFor="price">Product price</label>
-          <CurrencyInput
+          <input
+            type="number"
             id="price"
             name="price"
             value={price}
             placeholder="Product Price"
-            defaultValue={1000}
-            decimalsLimit={2}
+            aria-label="Product Price"
             onChange={handleChange}
             min={100}
             required

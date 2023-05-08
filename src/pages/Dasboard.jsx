@@ -47,7 +47,19 @@ export default function Dasboard() {
   return (
     <>
       <section className="heading">
-        <h1>welcome {user && user.user.name}</h1>
+        <div class="flex items-center space-x-4 justify-center">
+          <img
+            class="w-20 h-20 rounded-full"
+            src={user && user.user.imgUrl}
+            alt=""
+          />
+          <h1 class="font-medium">
+            <div>{user && user.user.name}</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+              Joined in {new Date(user && user.user.createdAt).toLocaleString("en-US")}
+            </div>
+          </h1>
+        </div>
         <p>My Products</p>
       </section>
       <section className="content">
