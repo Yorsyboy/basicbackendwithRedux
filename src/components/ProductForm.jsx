@@ -136,8 +136,8 @@ export default function ProductForm() {
             onChange={handleChange}
             required
           >
-            <option value={true}>Yes</option>
-            <option value={false}>No</option>
+            <option value="true">Available</option>
+            <option value="false">Not Available</option>
           </select>
         </div>
         <div className="form-group">

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Products({ product }) {
   const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   const handleDelete = () => {
     dispatch(deleteProduct(product._id));
@@ -19,14 +19,18 @@ export default function Products({ product }) {
         <img src={product.imgUrl} alt="" srcset="" />
         <p>{product.description}</p>
         <p>{product.quantity}</p>
-        <p>{product.isAvailable === true ? "Yes" : "No"}</p>
-        {/* {product.user} {user?.user._id}
-      {user?.user._id === product._id ? (
-        <button>cant delete</button>
-      ): (
-        <button>can delete</button>
-      )} */}
-      <button onClick={handleDelete} className="close">x</button>
+        <p>{product.isAvailable === true ? "Available" : "Not Available"}</p>
+
+        {user?.user._id === product.user ? (
+          <>
+            <button onClick={handleDelete}>Delete</button>
+            <Link to={`/update/${product._id}`} className="edit">
+              Edit
+            </Link>
+          </>
+        ) : (
+          <button hidden></button>
+        )}
       </div>
     </div>
   );
