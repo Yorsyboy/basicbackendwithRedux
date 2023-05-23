@@ -95,7 +95,9 @@ export default function UpdateProduct() {
       </section>
       <section className="content">
         {products?.map((product) => (
-          <Products key={product._id} product={product} />
+          <div key={product._id}>
+            <img src={product.imgUrl} alt={product.name} />
+          </div>
         ))}
       </section>
 
@@ -163,6 +165,7 @@ export default function UpdateProduct() {
                 id="imgUrl"
                 name="imgUrl"
                 placeholder="Enter Product Image"
+                accept="image/*"
               />
             </div>
             <div className="form-group">

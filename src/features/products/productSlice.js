@@ -130,7 +130,11 @@ export const productSlice = createSlice({
             .addCase(updateProduct.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.products = state.products.map((product) => product._id === action.payload._id ? action.payload : product)
+                { console.log(action.payload)}
+                const updatedProduct = action.payload
+                if (updatedProduct && updatedProduct.id) {
+                    state.products = state.products.map((product) => product.id === updatedProduct.id ? updatedProduct : product)
+                }
             })
             .addCase(updateProduct.rejected, (state, action) => {
                 state.isLoading = false
